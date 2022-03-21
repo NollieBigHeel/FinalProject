@@ -4,9 +4,9 @@ CREATE TABLE pokedex(
 id long AUTO_INCREMENT, 
 name VARCHAR(30) NOT NULL,
 type VARCHAR(30) NOT NULL,
-hp INT NOTNULL,
+hp INT,
 description VARCHAR(250),
-traded BOOLEAN NOTNULL,
+traded BOOLEAN,
 PRIMARY KEY (id)
 );
 
