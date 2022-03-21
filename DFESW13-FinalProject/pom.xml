@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>DFESW13-HolidayBookings</artifactId>
+	<artifactId>DFESW13-HolidayBookings-1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DFESW13-HolidayBookings</name>
+	<name>DFESW13-HolidayBookings-1</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -36,14 +36,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-</dependencies>
+		
+	</dependencies>
 
 	<build>
 		<plugins>
