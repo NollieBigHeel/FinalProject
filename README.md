@@ -7,7 +7,7 @@ I am doing this project as it is the final project from my course at QA.
 I expected the challeng to go better with less problems,but have managed to overcome most issues in the end.
 
 ### What went well/ Didn't go as planned?
-**What went well:
+**What went well**:
  * Creating my pokedex object and connecting it to the database.
  * Making sure I orginized my priorties.
  * Creating an Agile board on Jira.
