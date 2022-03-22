@@ -12,6 +12,7 @@ I expected the challeng to go better with less problems,but have managed to over
  * Making sure I orginized my priorties.
  * Creating an Agile board on Jira.
  * Making sure I pushed my code to the right branch!
+
 **Didn't go as plan:**
  * Had issues connecting to H2 database.
  * Testing my GET requests.
