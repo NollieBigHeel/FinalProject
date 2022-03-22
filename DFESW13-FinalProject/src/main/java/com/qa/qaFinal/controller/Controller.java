@@ -31,6 +31,7 @@ public class Controller {
 		
 	}
 	
+	// Create
 	@PostMapping("/createEntry")
 	public ResponseEntity<String> createEntry(@RequestBody Pokedex pokedex) {
 		
@@ -42,6 +43,7 @@ public class Controller {
 		return response;
 	}
 	
+	// Read
 	@GetMapping("/getEntries")
 	public ResponseEntity<List<Pokedex>> getEntries() {
 		
@@ -63,6 +65,19 @@ public class Controller {
 		return response;
 	}
 	
+	@GetMapping("/getName/{name}")
+	public ResponseEntity<List<Pokedex>> getByName (@PathVariable("name") String name) {
+		List<Pokedex> response = service.getByName(name);
+		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/getType/{type}")
+	public ResponseEntity<List<Pokedex>> getByType (@PathVariable("type") String type) {
+		List<Pokedex> response = service.getByType(type);
+		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+	}
+	
+	// Update
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> updateByid(@PathVariable("id") long id, @RequestBody Pokedex pokedex) {
 		
@@ -73,6 +88,7 @@ public class Controller {
    
 }
 	
+	// Delete
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteByid(@PathVariable("id") long id) {
 		service.remove(id);

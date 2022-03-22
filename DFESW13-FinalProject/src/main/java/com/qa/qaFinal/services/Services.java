@@ -18,11 +18,13 @@ public class Services {
 		this.repo = repo;
 	}
 	
+	// Create
 	public Pokedex createEntry(Pokedex pokedex) {
 		Pokedex savedObj = repo.save(pokedex);
 		return savedObj;
 	}
 	
+	// Read
 	public List<Pokedex> getEntries() {
 		return repo.findAll();
 	}
@@ -32,9 +34,18 @@ public class Services {
 		return repo.findById(id).get();
 	}
 	
+		public List<Pokedex> getByName(String name) {
+		
+		return repo.findByName(name);
+	}
+		
+			public List<Pokedex> getByType(String type) {
+		
+		return repo.findByType(type);
+	}
+
 	
-	
-	
+	// Update
 	public boolean update(long id, Pokedex pokedex) {
 		
 		
@@ -52,11 +63,15 @@ public class Services {
 		
 		
 	}
-
+	
+// Delete
 	public boolean remove(long id) {
 		repo.deleteById(id);
 		return true;
 		
 	}
+
+
+
 
 }
