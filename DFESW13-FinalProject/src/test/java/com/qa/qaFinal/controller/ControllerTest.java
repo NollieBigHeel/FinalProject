@@ -1,7 +1,9 @@
 package com.qa.qaFinal.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.qaFinal.model.Pokedex;
 
@@ -29,7 +32,7 @@ import com.qa.qaFinal.model.Pokedex;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 
 @AutoConfigureMockMvc
-@TestInstance(TestInstance.Lifecycle.PER_CLASS) // Allows us to use @BeforeAll in a NON STATIC way
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) 
 
 @Sql(scripts = {"classpath:test-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("dev")
@@ -75,10 +78,55 @@ public void testGetEntries() throws Exception {
 	
 	// Act
 	ResultMatcher checkStatus = status().isAccepted();
-	ResultMatcher checkBody = content().json(allPokemonJson); // If not valid, we'll be able to see the exact response
+	ResultMatcher checkBody = content().json(allPokemonJson); 
 	
 	mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
 	
 }
+
+@Test
+public void testGetId() throws Exception {
+	
+	// Arrange
+    String testPokemonIdJson = mapper.writeValueAsString(testPokemonID);
+	
+	// Act 
+	RequestBuilder req = get("/getId/1");
+	
+	ResultMatcher checkStatus = status().isCreated();
+	ResultMatcher checkBody = content().json(testPokemonIdJson); 
+	// Assert
+	mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
+	
+}
+
+@Test
+public void testUpdate() throws Exception {
+	
+	// Arrange
+	Pokedex updatePokemon = new Pokedex("new pokemon", "new type", 20, "new description", true);
+	String updatedPokemonJson = mapper.writeValueAsString(updatePokemon);
+	
+	// Act
+	RequestBuilder req = put("/update/1").contentType(MediaType.APPLICATION_JSON).content(updatedPokemonJson);
+	ResultMatcher checkStatus = status().isOk();
+	ResultMatcher checkBody = content().string("Updating pokemon of id: 1");
+	
+	// Assert
+	mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
+	
+}
+
+@Test
+public void testDeleteId() throws Exception {
+	RequestBuilder req = delete("/delete/1"); 
+	ResultMatcher checkStatus = status().isAccepted(); 
+	ResultMatcher checkBody = content().string("Pokemon of id: 1 deleted"); 
+	
+	mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
+}
+
+
+
 
 }
