@@ -1,5 +1,9 @@
 package com.qa.qaFinal.services;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -60,6 +64,53 @@ public class ServicesTest {
 	    // Assert
 	    Assertions.assertEquals(testPokemonID, result);
 	    Mockito.verify(repo, Mockito.never()).getById(1l);
+	}
+	
+	@Test 
+	public void testGetAll () {
+		
+		// Arrange
+		List<Pokedex> pokeList = new ArrayList<>();
+		pokeList.add(testPokemon1);
+	
+		// Act
+		Mockito.when(this.repo.findAll()).thenReturn(pokeList);
+		
+		// Assert
+		assertThat(this.service.getEntries()).isEqualTo(pokeList);
+		Mockito.verify(this.repo, Mockito.times(1)).findAll();
+	}
+	
+	@Test
+	public void getByName() {
+		
+		// Arrange
+		String s = "pokemon1";
+		List<Pokedex> pokeList = new ArrayList<>();
+		pokeList.add(testPokemon1);
+		
+		// Act
+		Mockito.when(this.repo.findByName(s)).thenReturn(pokeList);
+		
+		// Assert
+		assertThat(this.service.getByName(s)).isEqualTo(pokeList);
+		Mockito.verify(this.repo, Mockito.times(1)).findByName(s);
+	}
+	
+	@Test
+	public void getByType() {
+		
+		// Arrange
+		String s = "type1";
+		List<Pokedex> pokeList = new ArrayList<>();
+		pokeList.add(testPokemon1);
+		
+		// Act
+		Mockito.when(this.repo.findByType(s)).thenReturn(pokeList);
+		
+		// Assert
+		assertThat(this.service.getByType(s)).isEqualTo(pokeList);
+		Mockito.verify(this.repo, Mockito.times(1)).findByType(s);
 	}
 	
 
