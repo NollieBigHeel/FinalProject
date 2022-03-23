@@ -22,5 +22,5 @@ I expected the challeng to go better with less problems,but have managed to over
 * I need to revise on what some of the commands mean/are doing.
 
 ### Link to screenshots!
-https://imgur.com/a/USmdeSQ
+https://imgur.com/a/17Nbmfa
 
