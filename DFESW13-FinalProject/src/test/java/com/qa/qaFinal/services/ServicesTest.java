@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.qaFinal.model.Pokedex;
 import com.qa.qaFinal.repo.Repo;
@@ -15,6 +16,7 @@ import com.qa.qaFinal.repo.Repo;
 
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class ServicesTest {
 	
 	
