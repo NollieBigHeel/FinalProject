@@ -44,9 +44,9 @@ public class ControllerTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	Pokedex testPokemon3 = new Pokedex("pokemon3", "type3", 3, "description3", true);
-	Pokedex testPokemonID = new Pokedex(1l,"pokemon1", "type1", 1, "description1", true);
-	Pokedex testPokemonID2 = new Pokedex(2l, "pokemon2", "type2", 2, "description2", false);
+	Pokedex testPokemon3 = new Pokedex("pokemon 3", "type 3", 3, "description 3", true);
+	Pokedex testPokemonID = new Pokedex(1l,"pokemon 1", "type 1", 1, "description 1", true);
+	Pokedex testPokemonID2 = new Pokedex(2l, "pokemon 2", "type 2", 2, "description 2", false);
 
 @Test
 public void testCreate() throws Exception {
@@ -80,6 +80,8 @@ public void testGetEntries() throws Exception {
 	ResultMatcher checkStatus = status().isAccepted();
 	ResultMatcher checkBody = content().json(allPokemonJson); 
 	
+	System.out.println(allPokemon);
+	
 	mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
 	
 }
@@ -93,7 +95,7 @@ public void testGetId() throws Exception {
 	// Act 
 	RequestBuilder req = get("/getId/1");
 	
-	ResultMatcher checkStatus = status().isCreated();
+	ResultMatcher checkStatus = status().isAccepted();
 	ResultMatcher checkBody = content().json(testPokemonIdJson); 
 	// Assert
 	mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
