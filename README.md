@@ -24,3 +24,6 @@ I expected the challeng to go better with less problems,but have managed to over
 ### Link to screenshots!
 https://imgur.com/a/USmdeSQ
 
+### Link to Jira board!
+https://danh-qa.atlassian.net/jira/software/projects/FIN/boards/2/reports/burnup
+
